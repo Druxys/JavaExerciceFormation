@@ -1,22 +1,20 @@
-package models;
+package com.exercice.formation.models;
 
 import javax.persistence.*;
-import javax.persistence.GeneratedValue;
-import javax.validation.constraints.Email;
-import java.io.Serializable;
 
-@Entity(name = "client")
-public class Client implements Serializable {
+import javax.validation.constraints.Email;
+
+@Entity(name = "customer")
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Email
     private String email;
-    private String password;
     private String firstname;
     private String lastname;
 
-    public Client() {
+    public Customer() {
     }
 
     public Long getId() {
@@ -33,14 +31,6 @@ public class Client implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstname() {

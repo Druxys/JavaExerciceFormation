@@ -1,24 +1,24 @@
-package models;
+package com.exercice.formation.models;
 
-import lombok.Getter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity(name = "invoice")
-public class Invoice implements Serializable {
+public class Invoice  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private TypeInvoice type;
-    private int number_candidat;
+    private int numberCandidat;
     private double price;
     private StatePayement statePayement;
     private String description;
     private int reference;
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    public Invoice(){}
 
     public Long getId() {
         return id;
@@ -36,12 +36,12 @@ public class Invoice implements Serializable {
         this.type = type;
     }
 
-    public int getNumber_candidat() {
-        return number_candidat;
+    public int getNumberCandidat() {
+        return numberCandidat;
     }
 
-    public void setNumber_candidat(int number_candidat) {
-        this.number_candidat = number_candidat;
+    public void setNumberCandidat(int numberCandidat) {
+        this.numberCandidat = numberCandidat;
     }
 
     public double getPrice() {
@@ -50,6 +50,14 @@ public class Invoice implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public StatePayement getStatePayement() {
+        return statePayement;
+    }
+
+    public void setStatePayement(StatePayement statePayement) {
+        this.statePayement = statePayement;
     }
 
     public String getDescription() {
@@ -66,21 +74,5 @@ public class Invoice implements Serializable {
 
     public void setReference(int reference) {
         this.reference = reference;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public StatePayement getStatePayement() {
-        return statePayement;
-    }
-
-    public void setStatePayement(StatePayement statePayement) {
-        this.statePayement = statePayement;
     }
 }
