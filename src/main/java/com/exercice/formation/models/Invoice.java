@@ -1,6 +1,9 @@
 package com.exercice.formation.models;
 
 
+import com.exercice.formation.models.invoice.StatePayement;
+import com.exercice.formation.models.invoice.TypeInvoice;
+
 import javax.persistence.*;
 
 @Entity(name = "invoice")
