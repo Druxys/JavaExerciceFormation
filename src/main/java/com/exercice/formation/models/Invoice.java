@@ -18,6 +18,11 @@ public class Invoice  {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    public Invoice(double price, String description) {
+        this.price = price;
+        this.description = description;
+    }
+
     public Invoice(){}
 
     public Long getId() {
