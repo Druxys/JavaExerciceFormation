@@ -17,6 +17,10 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(String email, String lastname, String firstname) {
+    }
+
+
     public Long getId() {
         return id;
     }
