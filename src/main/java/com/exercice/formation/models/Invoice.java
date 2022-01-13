@@ -1,10 +1,13 @@
 package com.exercice.formation.models;
 
 
+import com.exercice.formation.models.invoice.StatePayement;
+import com.exercice.formation.models.invoice.TypeInvoice;
+
 import javax.persistence.*;
 
 @Entity(name = "invoice")
-public class Invoice  {
+public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -79,5 +82,13 @@ public class Invoice  {
 
     public void setReference(int reference) {
         this.reference = reference;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
