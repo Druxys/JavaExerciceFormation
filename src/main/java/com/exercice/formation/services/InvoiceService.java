@@ -1,6 +1,7 @@
 package com.exercice.formation.services;
 
 import com.exercice.formation.exception.InvoiceAlreadyExistException;
+import com.exercice.formation.models.Customer;
 import com.exercice.formation.models.Invoice;
 import com.exercice.formation.repositories.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,9 @@ public class InvoiceService {
 
     public Invoice getInvoiceByPrice(double price, String description) throws InvoiceAlreadyExistException{
         Optional<Invoice> optInvoice = invoiceRepository.getInvoiceByPrice(price);
+        Customer customer = new Customer("test2@test2.test3", "popo", "polo");
         if (!optInvoice.isPresent()) {
-            Invoice invoice = new Invoice(price, description);
+            Invoice invoice = new Invoice(price, description, customer);
             return invoiceRepository.save(invoice);
         }else {
             throw new InvoiceAlreadyExistException("Invoice at description : " + description + " already exist");

@@ -18,12 +18,13 @@ public class Invoice {
     private String description;
     private int reference;
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-    public Invoice(double price, String description) {
+    public Invoice(double price, String description, Customer customer) {
         this.price = price;
         this.description = description;
+        this.customer = customer;
     }
 
     public Invoice(){}

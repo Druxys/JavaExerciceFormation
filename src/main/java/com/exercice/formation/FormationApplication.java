@@ -1,7 +1,10 @@
 package com.exercice.formation;
 
+import com.exercice.formation.models.Customer;
 import com.exercice.formation.models.Invoice;
+import com.exercice.formation.repositories.CustomerRepository;
 import com.exercice.formation.repositories.InvoiceRepository;
+import com.exercice.formation.services.CustomerService;
 import com.exercice.formation.services.InvoiceService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,10 +21,13 @@ public class FormationApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(InvoiceRepository invoiceRepository, InvoiceService invoiceService) {
+    public CommandLineRunner demo(InvoiceRepository invoiceRepository, InvoiceService invoiceService, CustomerRepository customerRepository, CustomerService customerService) {
         return (args -> {
-            invoiceService.getInvoiceByPrice(25,"test");
-            invoiceRepository.save(new Invoice(30,"test create invoice"));
+//            invoiceService.getInvoiceByPrice(52,"test655");
+            customerService.getByIdCustomer(5L);
+            Customer saveCustomer = customerRepository.save(new Customer("test@test.testo", "popo", "pol"));
+
+            invoiceRepository.save(new Invoice(30,"test create invoice",saveCustomer));
 
             for (Invoice invoice: invoiceRepository.findAll()) {
                 System.out.println(invoice.toString());
