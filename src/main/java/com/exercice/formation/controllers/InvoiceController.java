@@ -26,7 +26,7 @@ public class InvoiceController {
     }
 
     @PostMapping("/invoice")
-    public ResponseEntity<Invoice> register(@RequestBody @Valid Invoice invoice){
+    public ResponseEntity<Invoice> create(@RequestBody @Valid Invoice invoice){
         return new ResponseEntity<Invoice>(invoiceService.getInvoiceById(invoice.getId()), HttpStatus.OK);
     }
 }

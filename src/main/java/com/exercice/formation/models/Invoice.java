@@ -1,7 +1,5 @@
 package com.exercice.formation.models;
 
-import com.exercice.formation.models.invoice.StatePayement;
-import com.exercice.formation.models.invoice.TypeInvoice;
 
 import javax.persistence.*;
 
@@ -20,8 +18,12 @@ public class Invoice {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public Invoice() {
+    public Invoice(double price, String description) {
+        this.price = price;
+        this.description = description;
     }
+
+    public Invoice(){}
 
     public Long getId() {
         return id;
