@@ -18,6 +18,9 @@ public class Customer {
     }
 
     public Customer(String email, String lastname, String firstname) {
+        this.email = email;
+        this.lastname = lastname;
+        this.firstname = firstname;
     }
 
 

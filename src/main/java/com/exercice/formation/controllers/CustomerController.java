@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,12 +28,10 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Customer> register(@RequestParam(value = "email") String email, @RequestParam(value = "lastname") String firstname, @RequestParam(value = "firstname") String lastname) throws CustomerAlreadyExistException {
-        try {
-            Customer user = customerService.getByEmailCustomer(email, firstname, lastname);
-            return new ResponseEntity<Customer>(user, HttpStatus.CREATED);
-        } catch (CustomerAlreadyExistException e) {
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
-        }
+    public ResponseEntity<Customer> register(@RequestBody @Valid Customer customer) throws CustomerAlreadyExistException {
+
+        Customer user = customerService.createCustomer(customer);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+
     }
 }
