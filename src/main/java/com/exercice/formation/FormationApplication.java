@@ -12,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -28,7 +29,7 @@ public class FormationApplication {
             customerService.getByIdCustomer(5L);
             Customer saveCustomer = customerRepository.save(new Customer("test@test.testo", "popo", "pol"));
 
-            invoiceRepository.save(new Invoice(40,"test create invoice",saveCustomer, TypeTVA.NORMAL, TypeTVA.NORMAL.getSomme(), 8, 48));
+            invoiceRepository.save(new Invoice(40,"test create invoice",saveCustomer, TypeTVA.NORMAL, TypeTVA.NORMAL.getSomme(), 8, 48, LocalDate.now()));
 
             for (Invoice invoice: invoiceRepository.findAll()) {
                 System.out.println(invoice.toString());

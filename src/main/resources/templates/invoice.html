@@ -34,14 +34,14 @@
         <th>Encaissement</th>
     </tr>
     <tr th:each="invoice,state: ${invoices}">
-        <td th:text="${invoice.id}">Emise</td>
+        <td th:text="${invoice.date}">Emise</td>
         <td th:text="${invoice.type}">Status</td>
         <td th:text="${invoice.statePayement}">Action</td>
         <td th:text="${invoice.numberCandidat}">NB Candidats</td>
         <td th:text="${invoice.statePayement}">Encaissé</td>
         <td th:text="${invoice.reference}">ref</td>
         <td th:text="${invoice.customer.lastname}">Client</td>
-        <td th:text="${invoice.description}">Nature</td>
+        <td th:text="${invoice.description}">Nature-+</td>
         <td th:text="${invoice.price}">HT</td>
         <td th:text="${invoice.tva2}">TVA</td>
         <td th:text="${invoice.tvaPrice}">TVA SOMME</td>

@@ -21,9 +21,16 @@
 
     <label th:for="tva">tva</label>
     <div>
-        <select id="type" th:field="*{tva}">
+        <select id="tva" th:field="*{tva}">
             <option th:each="TVAType : ${TypeTVA}" th:value="${TVAType}"
                     th:text="${TVAType.getSomme()}"></option>
+        </select>
+    </div>
+    <label th:for="customer">Client</label>
+    <div>
+        <select id="customer" th:field="*{customer}">
+            <option th:each="customer : ${customers}" th:value="${customer.id}"
+                    th:text="${customer.lastname}"></option>
         </select>
     </div>
 <!--    <label th:for="ref" >Réf.</label>-->

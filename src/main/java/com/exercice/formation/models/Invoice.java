@@ -7,6 +7,8 @@ import com.exercice.formation.models.invoice.TypePayement;
 import com.exercice.formation.models.invoice.TypeTVA;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity(name = "invoice")
 public class Invoice {
@@ -27,9 +29,9 @@ public class Invoice {
     private TypePayement typePayement;
     private double total;
     private double tvaPrice;
-    private DateT
+    private LocalDate date;
 
-    public Invoice(double price, String description, Customer customer, TypeTVA tva, double tva2, double tvaPrice, double total) {
+    public Invoice(double price, String description, Customer customer, TypeTVA tva, double tva2, double tvaPrice, double total, LocalDate date) {
         this.price = price;
         this.description = description;
         this.customer = customer;
@@ -37,6 +39,7 @@ public class Invoice {
         this.tva = tva;
         this.total = total;
         this.tvaPrice = tvaPrice;
+        this.date = date;
     }
 
     public Invoice(){}
@@ -140,5 +143,12 @@ public class Invoice {
     }
     public void setTvaPrice(double tvaPrice){
         this.tvaPrice = tvaPrice;
+    }
+
+    public LocalDate getDate(){
+        return date;
+    }
+    public void setDate(LocalDate date){
+        this.date = date;
     }
 }

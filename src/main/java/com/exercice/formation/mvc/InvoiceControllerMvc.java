@@ -3,6 +3,8 @@ package com.exercice.formation.mvc;
 import com.exercice.formation.models.Customer;
 import com.exercice.formation.models.Invoice;
 import com.exercice.formation.models.invoice.TypeTVA;
+import com.exercice.formation.repositories.CustomerRepository;
+import com.exercice.formation.services.CustomerService;
 import com.exercice.formation.services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class InvoiceControllerMvc {
 
     @Autowired
     InvoiceService invoiceService;
+
+    @Autowired
+    CustomerService customerService;
 
 //    @GetMapping(value = "/invoice")
 //    public String getInvoicesById(@RequestParam(name = "id", required = false) Long id, ModelMap modelMap) {
@@ -48,8 +53,11 @@ public class InvoiceControllerMvc {
     @RequestMapping(value = {"/createInvoice"}, method = RequestMethod.GET)
     public String showAddInvoice(Model model) {
 
+        List<Customer> customer = customerService.getAllCustomer();
+
         Invoice invoiceForm = new Invoice();
         List<TypeTVA> typeTva = Arrays.asList(TypeTVA.values());
+        model.addAttribute("customers", customer);
 
         model.addAttribute("TypeTVA", typeTva);
         model.addAttribute("invoice", invoiceForm);

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,19 +23,19 @@ public class InvoiceService {
     @Autowired
     CustomerRepository customerRepository;
 
-    public Invoice getInvoiceByPrice(double price, String description, TypeTVA tva) throws InvoiceAlreadyExistException{
+    public Invoice getInvoiceByPrice(double price, String description, TypeTVA tva, Customer customer) throws InvoiceAlreadyExistException{
         Optional<Invoice> optInvoice = invoiceRepository.getInvoiceByPrice(price);
-        Customer customer = new Customer("test@test.testosterone", "popolou", "polopopo");
-        Customer customerDb = customerRepository.save(customer);
+        Customer customerdb = new Customer("test@test.testosterone", "popolou", "polopopo");
+        Customer customerDb2 = customerRepository.save(customerdb);
         if (!optInvoice.isPresent()) {
             double tvaPrice = (price * tva.getSomme()) / 100 ;
             double total = price + tvaPrice;
+            LocalDate date = LocalDate.now();
 
-            Invoice invoice = new Invoice(price, description, customerDb, tva, tva.getSomme(), tvaPrice, total);
+            Invoice invoice = new Invoice(price, description, customer, tva, tva.getSomme(), tvaPrice, total, date);
             invoice.setTvaPrice(tvaPrice);
             invoice.setTva2(tva.getSomme());
-            Invoice invoiceResult = invoiceRepository.save(invoice);
-            return invoiceResult;
+            return invoiceRepository.save(invoice);
         }else {
             throw new InvoiceAlreadyExistException("Invoice at description : " + description + " already exist");
         }
