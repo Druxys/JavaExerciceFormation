@@ -2,6 +2,7 @@ package com.exercice.formation;
 
 import com.exercice.formation.models.Customer;
 import com.exercice.formation.models.Invoice;
+import com.exercice.formation.models.invoice.TypeTVA;
 import com.exercice.formation.repositories.CustomerRepository;
 import com.exercice.formation.repositories.InvoiceRepository;
 import com.exercice.formation.services.CustomerService;
@@ -27,7 +28,7 @@ public class FormationApplication {
             customerService.getByIdCustomer(5L);
             Customer saveCustomer = customerRepository.save(new Customer("test@test.testo", "popo", "pol"));
 
-            invoiceRepository.save(new Invoice(30,"test create invoice",saveCustomer));
+            invoiceRepository.save(new Invoice(40,"test create invoice",saveCustomer, TypeTVA.NORMAL, TypeTVA.NORMAL.getSomme(), 8, 48));
 
             for (Invoice invoice: invoiceRepository.findAll()) {
                 System.out.println(invoice.toString());

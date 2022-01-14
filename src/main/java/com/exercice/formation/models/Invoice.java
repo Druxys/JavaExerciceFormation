@@ -3,6 +3,8 @@ package com.exercice.formation.models;
 
 import com.exercice.formation.models.invoice.StatePayement;
 import com.exercice.formation.models.invoice.TypeInvoice;
+import com.exercice.formation.models.invoice.TypePayement;
+import com.exercice.formation.models.invoice.TypeTVA;
 
 import javax.persistence.*;
 
@@ -20,11 +22,21 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
+    private TypeTVA tva;
+    private double tva2;
+    private TypePayement typePayement;
+    private double total;
+    private double tvaPrice;
+    private DateT
 
-    public Invoice(double price, String description, Customer customer) {
+    public Invoice(double price, String description, Customer customer, TypeTVA tva, double tva2, double tvaPrice, double total) {
         this.price = price;
         this.description = description;
         this.customer = customer;
+        this.tva2 = tva2;
+        this.tva = tva;
+        this.total = total;
+        this.tvaPrice = tvaPrice;
     }
 
     public Invoice(){}
@@ -91,5 +103,42 @@ public class Invoice {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public TypeTVA getTva() {
+        return tva;
+    }
+
+    public void setTva(TypeTVA tva) {
+        this.tva = tva;
+    }
+
+    public TypePayement getTypePayement() {
+        return typePayement;
+    }
+
+    public void setTypePayement(TypePayement typePayement) {
+        this.typePayement = typePayement;
+    }
+
+    public double getTotal(){
+        return total;
+    }
+    public void setTotal(double total){
+        this.total = total;
+    }
+
+    public double getTva2(){
+        return tva2;
+    }
+    public void setTva2(double tva2){
+        this.tva2 = tva2;
+    }
+
+    public double getTvaPrice(){
+        return tvaPrice;
+    }
+    public void setTvaPrice(double tvaPrice){
+        this.tvaPrice = tvaPrice;
     }
 }

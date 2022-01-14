@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Créer Facture</h3>
+<form action="#" th:action="@{/invoice/create}" th:object="${invoice}" method="post">
+    <label th:for="HT">Prix HT</label>
+    <div>
+        <input type="number" id="HT"
+               th:field="*{price}"/>
+    </div>
+
+    <label th:for="description">Nature</label>
+    <div>
+        <input type="text" id="description"
+               th:field="*{description}"/>
+    </div>
+
+    <label th:for="tva">tva</label>
+    <div>
+        <select id="type" th:field="*{tva}">
+            <option th:each="TVAType : ${TypeTVA}" th:value="${TVAType}"
+                    th:text="${TVAType.getSomme()}"></option>
+        </select>
+    </div>
+<!--    <label th:for="ref" >Réf.</label>-->
+<!--    <div class="col-sm-10">-->
+<!--        <input type="text" class="form-control" id="ref"-->
+<!--               th:field="*{ref}"/>-->
+<!--    </div>-->
+    <div>
+        <button type="submit" >Sauvegarder</button>
+    </div>
+</form>
+</body>
+</html>

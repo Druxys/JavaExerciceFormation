@@ -7,30 +7,48 @@
     <script src="../static/invoice/invoice.js" data-th-src="@{/invoice.js}"></script>
 </head>
 <body>
-<!--    <thead>-->
-<!--        <tr>-->
-<!--            <th>Emise</th>-->
-<!--            <th></th>-->
-<!--            <th>Action</th>-->
-<!--            <th>NB Candidats</th>-->
-<!--            <th>Encaissé</th>-->
-<!--            <th>Réf.</th>-->
-<!--            <th>Client</th>-->
-<!--            <th>Nature</th>-->
-<!--            <th>HT</th>-->
-<!--            <th>TVA</th>-->
-<!--            <th>TVA SOMME</th>-->
-<!--            <th>TTC</th>-->
-<!--            <th>Encaissement</th>-->
-<!--        </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="invoices,state: ${invoices}">-->
-<!--        <td th:utext="${invoices.id}"></td>-->
-<!--        <td th:utext="${invoices.firstname}"></td>-->
-<!--        <td th:utext="${invoices.email}"></td>-->
-<!--        <td th:utext="${invoices.password}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
+<table title="FORMATION">
+    <tr>
+        <th>Nb de formation</th>
+        <th>Nb de candidats</th>
+    </tr>
+    <tr>
+        <th>0</th>
+        <th>0</th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Emise</th>
+        <th>Status</th>
+        <th>Action</th>
+        <th>NB Candidats</th>
+        <th>Encaissé</th>
+        <th>Réf.</th>
+        <th>Client</th>
+        <th>Nature</th>
+        <th>HT</th>
+        <th>TVA</th>
+        <th>TVA SOMME</th>
+        <th>TTC</th>
+        <th>Encaissement</th>
+    </tr>
+    <tr th:each="invoice,state: ${invoices}">
+        <td th:text="${invoice.id}">Emise</td>
+        <td th:text="${invoice.type}">Status</td>
+        <td th:text="${invoice.statePayement}">Action</td>
+        <td th:text="${invoice.numberCandidat}">NB Candidats</td>
+        <td th:text="${invoice.statePayement}">Encaissé</td>
+        <td th:text="${invoice.reference}">ref</td>
+        <td th:text="${invoice.customer.lastname}">Client</td>
+        <td th:text="${invoice.description}">Nature</td>
+        <td th:text="${invoice.price}">HT</td>
+        <td th:text="${invoice.tva2}">TVA</td>
+        <td th:text="${invoice.tvaPrice}">TVA SOMME</td>
+        <td th:text="${invoice.total}">TTC</td>
+        <td th:text="${invoice.price}">Encaissement</td>
+    </tr>
+</table>
+
 </body>
 </html>

@@ -28,10 +28,15 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Customer> register(@RequestBody @Valid Customer customer) throws CustomerAlreadyExistException {
-
-        Customer user = customerService.createCustomer(customer);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-
+    public ResponseEntity<Customer> register(@RequestParam(value = "email") String email, @RequestParam(value = "lastname") String lastname, @RequestParam(value = "firstname") String firstname) throws CustomerAlreadyExistException {
+        try {
+            Customer customer = customerService.getByEmailCustomer(email, lastname, firstname);
+            return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
+        } catch (CustomerAlreadyExistException e) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        }
+//        Customer user = customerService.createCustomer(customer);
+//        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
 }

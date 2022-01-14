@@ -27,7 +27,7 @@ public class InvoiceController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Invoice> create(@RequestBody @Valid Invoice invoice){
-        return new ResponseEntity<Invoice>(invoiceService.getInvoiceByPrice(invoice.getPrice(), invoice.getDescription()), HttpStatus.OK);
+    public ResponseEntity<Invoice> create(@ModelAttribute  @Valid Invoice invoice){
+        return new ResponseEntity<Invoice>(invoiceService.getInvoiceByPrice(invoice.getPrice(), invoice.getDescription(), invoice.getTva()), HttpStatus.OK);
     }
 }
